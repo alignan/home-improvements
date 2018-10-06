@@ -147,8 +147,8 @@ def lights_weather_indication():
     meas['weather_state'] = r['current_observation']['weather']
 
     if meas['weather_state'] in wunderground_states:
-        print(ts() + " - weather is " + weather_state + " now {0}C ({2}C) and {1}%RH".format(meas['berlin_temperature'],
-            meas['berlin_humidity'], meas['berlin_temperature_feels']))
+        print(ts() + " - weather is {0} now {1}C ({2}C) and {3}%RH".format(meas['weather_state'],
+            meas['berlin_temperature'], meas['berlin_temperature_feels'], meas['berlin_humidity']))
         publish_to_database(meas)
 
 # set the schedules and ignore the ones created by the other applications and accessories
