@@ -1,0 +1,6 @@
+pyyaml
+requests
+paho-mqtt
+gevent
+qhue
+influxdb

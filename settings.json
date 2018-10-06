@@ -1,0 +1,73 @@
+{
+    "Main light living room": {
+        "default": {
+            "bri": 254,
+            "ct": 156,
+            "sat": 251,
+            "hue": 34069
+        },
+        "unwanted": {
+            "hue": 14988,
+            "ct": 366,
+            "sat": 141
+        }
+    },
+    "Main light children bedroom": {
+        "default": {
+            "bri": 254,
+            "ct": 156,
+            "sat": 251,
+            "hue": 34069
+        },
+        "unwanted": {
+            "hue": 14988,
+            "ct": 366,
+            "sat": 141
+        }
+    },
+    "Main light bedroom": {
+        "default": {
+            "bri": 254,
+            "ct": 156,
+            "sat": 251,
+            "hue": 34069
+        },
+        "unwanted": {
+            "hue": 14988,
+            "ct": 366,
+            "sat": 141
+        }
+    },
+    "Main Hall light": {
+        "default": {
+            "bri": 254,
+            "ct": 156,
+            "sat": 251,
+            "hue": 34069
+        },
+        "unwanted": {
+            "hue": 14988,
+            "ct": 366,
+            "sat": 141
+        }
+    },
+    "Bed light children bedroom": {
+        "default": {
+            "bri": 0,
+            "ct": 156
+        },
+        "unwanted": {
+            "bri": 254,
+            "ct": 370
+        },
+        "schedules":[{
+            "name": "erin sleepy time on",
+            "description": "schedule for the night lamp",
+            "command": {
+                "method": "PUT",
+                "on": "True"
+            },
+            "localtime": ""
+        }]
+    }
+}

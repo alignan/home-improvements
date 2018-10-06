@@ -1,0 +1,8 @@
+# Other files and folders not wanted
+.DS_Store
+*.pyc
+*.orig
+*~
+config.json
+.philips_hue_secret.json
+venv/

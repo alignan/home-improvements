@@ -1,0 +1,3 @@
+[submodule "deps/qhue"]
+	path = deps/qhue
+	url = https://github.com/quentinsf/qhue.git
