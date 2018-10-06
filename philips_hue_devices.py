@@ -144,10 +144,9 @@ def lights_weather_indication():
     meas['berlin_temperature'] = round(float(r['current_observation']['temp_c']), 2)
     meas['berlin_humidity'] = round(float(r['current_observation']['relative_humidity'][:-1]), 2)
     meas['berlin_temperature_feels'] = round(float(r['current_observation']['feelslike_c']), 2)
+    meas['weather_state'] = r['current_observation']['weather']
 
-    weather_state = r['current_observation']['weather']
-
-    if weather_state in wunderground_states:
+    if meas['weather_state'] in wunderground_states:
         print(ts() + " - weather is " + weather_state + " now {0}C ({2}C) and {1}%RH".format(meas['berlin_temperature'],
             meas['berlin_humidity'], meas['berlin_temperature_feels']))
         publish_to_database(meas)
