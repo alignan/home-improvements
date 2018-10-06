@@ -74,25 +74,22 @@ def publish_to_database(values):
 def get_file(my_file):
     if not path.exists(my_file):
         SystemExit(ts() + " - No settings given, exiting!")
-    with open(my_file, "r") as the_file:
-        return json.load(the_file)
+    try:
+        with open(my_file, "r") as the_file:
+            return json.load(the_file)
+    except Exception as e:
+        SystemExit(ts() + str(e))
 
-# retrieve user from a saved session or by triggering a request to the bridge
+# retrieve user from a saved session
 def get_user():
     # check for a credential file
     if not path.exists(CRED_FILE_PATH):
-        while True:
-            try:
-                username = create_new_username(BRIDGE_IP)
-                break
-            except QhueException as err:
-                print(ts() + " - Error while creating a new user name: {0}".format(err))
-        with open(CRED_FILE_PATH, "w") as cred_file:
-            cred_file.write(username)
+        SystemExit(ts() + " - HUE user not enabled")
     else:
         with open(CRED_FILE_PATH, "r") as cred_file:
             username = json.load(cred_file)
-    return username["hue"]
+            return username["hue"]
+    return None
 
 # change lights from the default value when on to a preferred one
 def override_default_values():
@@ -147,7 +144,7 @@ def lights_weather_indication():
     meas['berlin_temperature'] = r['current_observation']['temp_c']
     meas['berlin_humidity'] = r['current_observation']['relative_humidity']
     meas['berlin_temperature_feels'] = r['current_observation']['feelslike_c']
-    
+
     weather_state = r['current_observation']['weather']
 
     if weather_state in wunderground_states:
@@ -180,7 +177,8 @@ def main():
 
     # create the bridge resource, passing the captured user name
     config = get_file(CONFIG_FILE_PATH)
-    bridge = Bridge(config['bridge'], get_user())
+    user = get_file(CRED_FILE_PATH)
+    bridge = Bridge(config['bridge'], user['hue'])
 
     # create a lights resource
     lights = bridge.lights
