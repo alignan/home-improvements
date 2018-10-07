@@ -145,6 +145,9 @@ def lights_weather_indication():
     meas['berlin_humidity'] = round(float(r['current_observation']['relative_humidity'][:-1]), 2)
     meas['berlin_temperature_feels'] = round(float(r['current_observation']['feelslike_c']), 2)
     meas['weather_state'] = r['current_observation']['weather']
+    meas['berlin_pressure'] = round(float(r['current_observation']['pressure_mb']), 2)
+    meas['berlin_wind_speed_kph'] = round(float(r['current_observation']['wind_kph']), 2)
+    meas['berlin_wind_gust_kph'] = round(float(r['current_observation']['wind_gust_mph']) * 1.609344, 2)
 
     if meas['weather_state'] in wunderground_states:
         print(ts() + " - weather is {0} now {1}C ({2}C) and {3}%RH".format(meas['weather_state'],
