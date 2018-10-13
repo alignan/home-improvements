@@ -4,3 +4,6 @@
 [submodule "dependencies/qhue"]
 	path = dependencies/qhue
 	url = https://github.com/quentinsf/qhue.git
+[submodule "dependencies/enocean"]
+	path = dependencies/enocean
+	url = https://github.com/kipe/enocean.git
