@@ -31,17 +31,17 @@ except ImportError:
 def ts():
     return str(datetime.datetime.now())
 
-# connects to the influxDB database:
+# connects to the influxDB database
 def connect_to_ddbb():
     global influxClient
     while True:
         try:
             time.sleep(5)
             influxClient = InfluxDBClient(DDBB_ADDRESS, DDBB_PORT, "root", "root")
-            influxClient.create_database(DDBB_NAME)
+            influxClient.create_database(DDDBB_NAME)
             break
-        except:
-            print(ts() + " - connecting to the DDBB")
+        except Exception as e:
+            print(ts() + str(e))
 
 # publish to the influxDB database
 def publish_to_database(values):

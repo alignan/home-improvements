@@ -53,8 +53,8 @@ def connect_to_ddbb():
             influxClient = InfluxDBClient(DDBB_ADDRESS, DDBB_PORT, "root", "root")
             influxClient.create_database(DDDBB_NAME)
             break
-        except:
-            print(ts() + " - connecting to the DDBB")
+        except Exception as e:
+            print(ts() + str(e))
 
 # publish to the influxDB database
 def publish_to_database(values):
