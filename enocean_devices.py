@@ -21,6 +21,7 @@ ENOCEAN_DEVICES = {
 }
 
 influxClient = None
+communicator = None
 
 try:
     import queue
@@ -58,7 +59,7 @@ def publish_to_database(values):
         data = []
 
 def main():
-    global influxClient
+    global influxClient, communicator
 
     init_logging()
     communicator = SerialCommunicator(port='/dev/ttyUSB0')
@@ -95,11 +96,14 @@ def main():
             traceback.print_exc(file=sys.stdout)
             break
 
+        time.sleep(0.1)
+
     # if we reached here, exit
     stop_application()
 
 # in case of termination signal exit
 def stop_application():
+    global communicator
     if communicator.is_alive():
         communicator.stop()
     sys.exit(0)
