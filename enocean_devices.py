@@ -18,7 +18,7 @@ DDBB_PORT      = 8086
 
 ENOCEAN_DEVICES = {
     '01:80:F5:BC': 'main_bedroom_temperature',
-    '01:9C:44:11' : 'living_room_CO2'
+    '01:9C:44:11': 'living_room_CO2'
 }
 
 influxClient = None
@@ -86,20 +86,19 @@ def main():
                 if packet.rorg == RORG.BS4 and packet.rorg_type == 0x05 and packet.rorg_func == 0x02:
                     packet.select_eep(0x02, 0x05)
                     packet.parse_eep()
-
+                    print("Temperature sensor reading received")
                     if packet.sender_hex in ENOCEAN_DEVICES:
                         for k in packet.parsed:
                             print('%s: %s' % (k, packet.parsed[k]))
                         meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['TMP']['value'], 2)
-                        publish_to_database(meas)
-                        meas = {}
                 if packet.rorg == RORG.BS4 and packet.rorg_type == 0x09 and packet.rorg_func == 0x09:
                     packet.select_eep(0x09, 0x09)
                     packet.parse_eep()
                     print("XXXXXXXXXXXXXXX")
                     if packet.sender_hex in ENOCEAN_DEVICES:
                         meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['CO2']['value'], 2)
-                        publish_to_database(meas)
+                if meas:
+                    publish_to_database(meas)
         except queue.Empty:
             continue
         except KeyboardInterrupt:
