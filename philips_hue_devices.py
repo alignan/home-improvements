@@ -21,6 +21,7 @@ WUNDERGROUND_PATH   = "wunderground.json"
 CRED_FILE_PATH      = ".philips_hue_secret.json"
 OVERRIDE_PERIOD     = 15.0
 WUNDERGROUND_PERIOD = 300.0
+WUNDERSTATION_URL   = '/pws:IBERLINB95.json'
 
 DDDBB_NAME          = "local"
 DDBB_ADDRESS        = "localhost"
@@ -137,7 +138,7 @@ def lights_weather_indication():
     wunderground_api = get_file(CRED_FILE_PATH)
     wunderground_url = 'http://api.wunderground.com/api/{0}/geolookup/conditions/q'.format(wunderground_api['wunderground'])
 
-    r = requests.get(wunderground_url + '/pws:IBERLIN1449.json').json()
+    r = requests.get(wunderground_url + WUNDERSTATION_URL).json()
 
     # build my dictionary array to write to database
     meas = {}
