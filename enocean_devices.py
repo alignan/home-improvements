@@ -12,12 +12,12 @@ from enocean.protocol.constants import PACKET, RORG
 import traceback
 from influxdb import InfluxDBClient
 
-DDDBB_NAME     = "local"
+DDBB_NAME      = "local"
 DDBB_ADDRESS   = "localhost"
 DDBB_PORT      = 8086
 
 ENOCEAN_DEVICES = {
-    '01:80:F5:BC': 'main bedroom'
+    '01:80:F5:BC': 'main_bedroom_temperature'
 }
 
 influxClient = None
@@ -37,9 +37,9 @@ def connect_to_ddbb():
     global influxClient
     while True:
         try:
-            time.sleep(5)
+            time.sleep(1)
             influxClient = InfluxDBClient(DDBB_ADDRESS, DDBB_PORT, "root", "root")
-            influxClient.create_database(DDDBB_NAME)
+            influxClient.create_database(DDBB_NAME)
             break
         except Exception as e:
             print(ts() + str(e))
@@ -68,16 +68,18 @@ def main():
     print('The Base ID of your module is %s.' % enocean.utils.to_hex_string(communicator.base_id))
 
     # connect to the database
-    # connect_to_ddbb()
+    connect_to_ddbb()
 
     # endless loop receiving radio packets
     while communicator.is_alive():
         try:
             # Loop to empty the queue...
-            packet = communicator.receive.get(block=True, timeout=1)
+            packet = communicator.receive.get(block=False, timeout=1)
 
             # RORG: 0xA5, FUNC: 0x02, TYPE: 0x05, Manufacturer: 0x2D
             # 01:80:F5:BC->FF:FF:FF:FF (-74 dBm): 0x01 ['0xa5', '0x8', '0x28', '0x2d', '0x80', '0x1',
+
+            meas = {}
 
             if packet.packet_type == PACKET.RADIO:
                 if packet.rorg == RORG.BS4:
@@ -85,9 +87,11 @@ def main():
                     packet.parse_eep()
 
                     if packet.sender_hex in ENOCEAN_DEVICES:
-                        print(packet.sender_hex)
+                        # print(packet.sender_hex)
                         for k in packet.parsed:
                             print('%s: %s' % (k, packet.parsed[k]))
+                        meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['TMP']['value'], 2)
+                        publish_to_database(meas)
         except queue.Empty:
             continue
         except KeyboardInterrupt:
