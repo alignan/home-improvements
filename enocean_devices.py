@@ -75,7 +75,7 @@ def main():
     while communicator.is_alive():
         try:
             # Loop to empty the queue...
-            packet = communicator.receive.get(block=False, timeout=1)
+            packet = communicator.receive.get(block=True, timeout=1)
 
             # RORG: 0xA5, FUNC: 0x02, TYPE: 0x05, Manufacturer: 0x2D
             # 01:80:F5:BC->FF:FF:FF:FF (-74 dBm): 0x01 ['0xa5', '0x8', '0x28', '0x2d', '0x80', '0x1',
@@ -83,22 +83,23 @@ def main():
             meas = {}
 
             if packet.packet_type == PACKET.RADIO:
-                if packet.rorg == RORG.BS4 and packet.rorg_type == 0x05 and packet.rorg_func == 0x02:
-                    packet.select_eep(0x02, 0x05)
-                    packet.parse_eep()
-                    print("Temperature sensor reading received")
-                    if packet.sender_hex in ENOCEAN_DEVICES:
-                        for k in packet.parsed:
-                            print('%s: %s' % (k, packet.parsed[k]))
+                if packet.rorg == RORG.BS4 and packet.sender_hex in ENOCEAN_DEVICES:
+                    if packet.rorg_type == 0x05 and packet.rorg_func == 0x02:
+                        packet.select_eep(0x02, 0x05)
+                        packet.parse_eep()
+                        print("Temperature sensor reading received")
                         meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['TMP']['value'], 2)
-                if packet.rorg == RORG.BS4 and packet.rorg_type == 0x09 and packet.rorg_func == 0x09:
-                    packet.select_eep(0x09, 0x09)
-                    packet.parse_eep()
-                    print("XXXXXXXXXXXXXXX")
-                    if packet.sender_hex in ENOCEAN_DEVICES:
+                    if packet.rorg_type == 0x09 and packet.rorg_func == 0x09:
+                        packet.select_eep(0x09, 0x09)
+                        packet.parse_eep()
+                        print("CO2 sensor reading received")
                         meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['CO2']['value'], 2)
-                if meas:
-                    publish_to_database(meas)
+                else:
+                    print("unkown packet RORG {0} FUNC {1} TYPE {2} rx".format(packet.rorg, packet.rorg_func,
+                        packet.rorg_type))
+            if meas:
+                publish_to_database(meas)
+
         except queue.Empty:
             continue
         except KeyboardInterrupt:
