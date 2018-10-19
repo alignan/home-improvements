@@ -84,19 +84,19 @@ def main():
 
             if packet.packet_type == PACKET.RADIO:
                 if packet.rorg == RORG.BS4 and packet.sender_hex in ENOCEAN_DEVICES:
-                    if packet.rorg_type == 0x05 and packet.rorg_func == 0x02:
+
+                    # a hack as the rorg_type and rorg_func fields are only populated when the learn bit is set,
+                    # perhaps something I don't understand about the protocol... I'm taking the lazy approach...
+                    if ENOCEAN_DEVICES[packet.sender_hex] == 'main_bedroom_temperature'
+                    # if packet.rorg_type == 0x05 and packet.rorg_func == 0x02:
                         packet.select_eep(0x02, 0x05)
                         packet.parse_eep()
-                        print("Temperature sensor reading received")
                         meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['TMP']['value'], 2)
-                    if packet.rorg_type == 0x09 and packet.rorg_func == 0x09:
+                    if ENOCEAN_DEVICES[packet.sender_hex] == 'living_room_CO2'
+                    # if packet.rorg_type == 0x09 and packet.rorg_func == 0x09:
                         packet.select_eep(0x09, 0x09)
                         packet.parse_eep()
-                        print("CO2 sensor reading received")
                         meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['CO2']['value'], 2)
-                else:
-                    print("unkown packet RORG {0} FUNC {1} TYPE {2} rx".format(packet.rorg, packet.rorg_func,
-                        packet.rorg_type))
             if meas:
                 publish_to_database(meas)
 
