@@ -87,12 +87,12 @@ def main():
 
                     # a hack as the rorg_type and rorg_func fields are only populated when the learn bit is set,
                     # perhaps something I don't understand about the protocol... I'm taking the lazy approach...
-                    if ENOCEAN_DEVICES[packet.sender_hex] == 'main_bedroom_temperature'
+                    if ENOCEAN_DEVICES[packet.sender_hex] == 'main_bedroom_temperature':
                     # if packet.rorg_type == 0x05 and packet.rorg_func == 0x02:
                         packet.select_eep(0x02, 0x05)
                         packet.parse_eep()
                         meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['TMP']['value'], 2)
-                    if ENOCEAN_DEVICES[packet.sender_hex] == 'living_room_CO2'
+                    if ENOCEAN_DEVICES[packet.sender_hex] == 'living_room_CO2':
                     # if packet.rorg_type == 0x09 and packet.rorg_func == 0x09:
                         packet.select_eep(0x09, 0x09)
                         packet.parse_eep()
