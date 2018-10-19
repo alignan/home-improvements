@@ -4,7 +4,7 @@
 import sys
 import time
 import datetime
-from enocean.consolelogger import init_logging
+# from enocean.consolelogger import init_logging
 import enocean.utils
 from enocean.communicators.serialcommunicator import SerialCommunicator
 from enocean.protocol.packet import RadioPacket
@@ -62,7 +62,7 @@ def publish_to_database(values):
 def main():
     global influxClient, communicator
 
-    init_logging()
+    # init_logging()
     communicator = SerialCommunicator(port='/dev/ttyUSB0')
     communicator.start()
 
