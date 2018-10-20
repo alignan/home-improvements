@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import sys
 import json
 import time
@@ -73,21 +74,22 @@ def publish_to_database(values):
 
 # JSON file retriever
 def get_file(my_file):
-    if not path.exists(my_file):
+    file_loc = os.path.join(os.path.dirname(__file__), my_file)
+    if not path.exists(file_loc):
         SystemExit(ts() + " - No settings given, exiting!")
     try:
-        with open(my_file, "r") as the_file:
+        with open(file_loc, "r") as the_file:
             return json.load(the_file)
     except Exception as e:
         SystemExit(ts() + str(e))
 
 # retrieve user from a saved session
 def get_user():
-    # check for a credential file
-    if not path.exists(CRED_FILE_PATH):
+    file_loc = os.path.join(os.path.dirname(__file__), CRED_FILE_PATH)
+    if not path.exists(file_loc):
         SystemExit(ts() + " - HUE user not enabled")
     else:
-        with open(CRED_FILE_PATH, "r") as cred_file:
+        with open(file_loc, "r") as cred_file:
             username = json.load(cred_file)
             return username["hue"]
     return None
