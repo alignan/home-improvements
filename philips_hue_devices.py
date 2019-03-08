@@ -138,7 +138,7 @@ def lights_weather_indication():
 
     openweather_states = get_file(OPENWEATHER_PATH)
     openweather_api = get_file(CRED_FILE_PATH)
-    openweather_url = 'http://api.openweathermap.org/data/2.5/{0}&appid={1}'.format(
+    openweather_url = 'http://api.openweathermap.org/data/2.5/{0}&units=metric&appid={1}'.format(
         OPENWEATHER_URL, openweather_api['openweather'])
 
     r = requests.get(openweather_url).json()
