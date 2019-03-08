@@ -1,22 +1,198 @@
 {
 	"200": {
+		"description": "thunderstorm with light rain",
+		"action": "default"
+	},
+	"201": {
+		"description": "thunderstorm with rain",
+		"action": "default"
+	},
+	"202": {
+		"description": "thunderstorm with heavy rain",
+		"action": "default"
+	},
+	"210": {
+		"description": "light thunderstorm",
+		"action": "default"
+	},
+	"211": {
 		"description": "thunderstorm",
 		"action": "default"
 	},
+	"212": {
+		"description": "heavy thunderstorm",
+		"action": "default"
+	},
+	"221": {
+		"description": "ragged thunderstorm",
+		"action": "default"
+	},
+	"230": {
+		"description": "thunderstorm with light drizzle",
+		"action": "default"
+	},
+	"231": {
+		"description": "thunderstorm with drizzle",
+		"action": "default"
+	},
+	"232": {
+		"description": "thunderstorm with heavy drizzle",
+		"action": "default"
+	},
 	"300": {
+		"description": "light intensity drizzle",
+		"action": "default"
+	},
+	"301": {
 		"description": "drizzle",
 		"action": "default"
 	},
+	"302": {
+		"description": "heavy intensity drizzle",
+		"action": "default"
+	},
+	"310": {
+		"description": "light intensity drizzle rain",
+		"action": "default"
+	},
+	"311": {
+		"description": "drizzle rain",
+		"action": "default"
+	},
+	"312": {
+		"description": "heavy intensity drizzle rain",
+		"action": "default"
+	},
+	"313": {
+		"description": "shower rain and drizzle",
+		"action": "default"
+	},
+	"314": {
+		"description": "heavy shower rain and drizzle",
+		"action": "default"
+	},
+	"321": {
+		"description": "shower drizzle",
+		"action": "default"
+	},
 	"500": {
-		"description": "rain",
+		"description": "light rain",
+		"action": "default"
+	},
+	"501": {
+		"description": "moderate rain",
+		"action": "default"
+	},
+	"502": {
+		"description": "heavy intensity rain",
+		"action": "default"
+	},
+	"503": {
+		"description": "very heavy rain",
+		"action": "default"
+	},
+	"504": {
+		"description": "extreme rain",
+		"action": "default"
+	},
+	"511": {
+		"description": "freezing rain",
+		"action": "default"
+	},
+	"520": {
+		"description": "light intensity shower rain",
+		"action": "default"
+	},
+	"521": {
+		"description": "shower rain",
+		"action": "default"
+	},
+	"522": {
+		"description": "heavy intensity shower rain",
+		"action": "default"
+	},
+	"531": {
+		"description": "ragged shower rain",
 		"action": "default"
 	},
 	"600": {
+		"description": "light snow",
+		"action": "default"
+	},
+	"601": {
 		"description": "snow",
 		"action": "default"
 	},
-	"700": {
-		"description": "atmosphere",
+	"602": {
+		"description": "heavy snow",
+		"action": "default"
+	},
+	"611": {
+		"description": "sleet",
+		"action": "default"
+	},
+	"612": {
+		"description": "shower sleet",
+		"action": "default"
+	},
+	"615": {
+		"description": "light rain and snow",
+		"action": "default"
+	},
+	"616": {
+		"description": "rain and snow",
+		"action": "default"
+	},
+	"620": {
+		"description": "light shower snow",
+		"action": "default"
+	},
+	"621": {
+		"description": "shower snow",
+		"action": "default"
+	},
+	"622": {
+		"description": "heavy shower snow",
+		"action": "default"
+	},
+	"701": {
+		"description": "mist",
+		"action": "default"
+	},
+	"711": {
+		"description": "smoke",
+		"action": "default"
+	},
+	"721": {
+		"description": "haze",
+		"action": "default"
+	},
+	"731": {
+		"description": "sand, dust whirls",
+		"action": "default"
+	},
+	"741": {
+		"description": "fog",
+		"action": "default"
+	},
+	"751": {
+		"description": "sand",
+		"action": "default"
+	},
+	"761": {
+		"description": "dust",
+		"action": "default"
+	},
+	"762": {
+		"description": "volcanic ash",
+		"action": "default"
+	},
+	"771": {
+		"description": "squalls",
+		"action": "default"
+	},
+	"781": {
+		"description": "tornado",
 		"action": "default"
 	},
 	"800": {
@@ -24,7 +200,19 @@
 		"action": "default"
 	},
 	"801": {
-		"description": "clouds",
+		"description": "few clouds",
 		"action": "default"
-	}
+	},
+	"802": {
+		"description": "scattered clouds",
+		"action": "default"
+	},
+	"803": {
+		"description": "broken clouds",
+		"action": "default"
+	},
+	"804": {
+		"description": "overcast clouds",
+		"action": "default"
+	},
 }
