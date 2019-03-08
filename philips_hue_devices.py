@@ -151,8 +151,8 @@ def lights_weather_indication():
     meas['berlin_pressure'] = round(float(r['main']['pressure']), 2)
     meas['berlin_wind_speed_kph'] = round(float(r['wind']['speed']), 2)
 
-    if r['weather'][0]['id'] in openweather_states:
-        print(ts() + " - weather is {0} now {1}C and {3}%RH".format(meas['weather_state'],
+    if str(r['weather'][0]['id']) in openweather_states:
+        print(ts() + " - weather is {0} now {1}C and {2}%RH".format(meas['weather_state'],
             meas['berlin_temperature'], meas['berlin_humidity']))
         publish_to_database(meas)
 
