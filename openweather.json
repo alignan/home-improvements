@@ -1,0 +1,30 @@
+{
+	"200": {
+		"description": "thunderstorm",
+		"action": "default"
+	},
+	"300": {
+		"description": "drizzle",
+		"action": "default"
+	},
+	"500": {
+		"description": "rain",
+		"action": "default"
+	},
+	"600": {
+		"description": "snow",
+		"action": "default"
+	},
+	"700": {
+		"description": "atmosphere",
+		"action": "default"
+	},
+	"800": {
+		"description": "clear",
+		"action": "default"
+	},
+	"801": {
+		"description": "clouds",
+		"action": "default"
+	}
+}

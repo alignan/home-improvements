@@ -17,11 +17,11 @@ from qhue import Bridge, QhueException, create_new_username
 # hard-coded constants
 SETTINGS_FILE_PATH  = "settings.json"
 CONFIG_FILE_PATH    = "config.json"
-WUNDERGROUND_PATH   = "wunderground.json"
+OPENWEATHER_PATH    = "openweather.json"
 CRED_FILE_PATH      = ".philips_hue_secret.json"
 OVERRIDE_PERIOD     = 15.0
-WUNDERGROUND_PERIOD = 300.0
-WUNDERSTATION_URL   = '/pws:IBERLINB95.json'
+OPENWEATHER_PERIOD  = 600.0
+OPENWEATHER_URL     = '/weather?id=2950159'
 
 DDDBB_NAME          = "local"
 DDBB_ADDRESS        = "localhost"
@@ -130,29 +130,28 @@ def override_default_values():
 def lights_weather_indication():
     global bridge, ligths
 
-    t = threading.Timer(WUNDERGROUND_PERIOD, lights_weather_indication)
+    t = threading.Timer(OPENWEATHER_PERIOD, lights_weather_indication)
     t.daemon = True
     t.start()
 
-    wunderground_states = get_file(WUNDERGROUND_PATH)
-    wunderground_api = get_file(CRED_FILE_PATH)
-    wunderground_url = 'http://api.wunderground.com/api/{0}/geolookup/conditions/q'.format(wunderground_api['wunderground'])
+    openweather_states = get_file(OPENWEATHER_PATH)
+    openweather_api = get_file(CRED_FILE_PATH)
+    openweather_url = 'http://api.openweathermap.org/data/2.5/{0}&appid={1}'.format(
+        OPENWEATHER_URL, openweather_api['openweather'])
 
-    r = requests.get(wunderground_url + WUNDERSTATION_URL).json()
+    r = requests.get(openweather_url).json()
 
     # build my dictionary array to write to database
     meas = {}
-    meas['berlin_temperature'] = round(float(r['current_observation']['temp_c']), 2)
-    meas['berlin_humidity'] = round(float(r['current_observation']['relative_humidity'][:-1]), 2)
-    meas['berlin_temperature_feels'] = round(float(r['current_observation']['feelslike_c']), 2)
-    meas['weather_state'] = r['current_observation']['weather']
-    meas['berlin_pressure'] = round(float(r['current_observation']['pressure_mb']), 2)
-    meas['berlin_wind_speed_kph'] = round(float(r['current_observation']['wind_kph']), 2)
-    meas['berlin_wind_gust_kph'] = round(float(r['current_observation']['wind_gust_mph']) * 1.609344, 2)
+    meas['berlin_temperature'] = round(float(r['main']['temp']), 2)
+    meas['berlin_humidity'] = round(float(r['main']['humidity']), 2)
+    meas['weather_state'] = r['weather'][0]['description']
+    meas['berlin_pressure'] = round(float(r['main']['pressure']), 2)
+    meas['berlin_wind_speed_kph'] = round(float(r['wind']['speed']), 2)
 
-    if meas['weather_state'] in wunderground_states:
-        print(ts() + " - weather is {0} now {1}C ({2}C) and {3}%RH".format(meas['weather_state'],
-            meas['berlin_temperature'], meas['berlin_temperature_feels'], meas['berlin_humidity']))
+    if r['weather'][0]['id'] in openweather_states:
+        print(ts() + " - weather is {0} now {1}C and {3}%RH".format(meas['weather_state'],
+            meas['berlin_temperature'], meas['berlin_humidity']))
         publish_to_database(meas)
 
 # set the schedules and ignore the ones created by the other applications and accessories
