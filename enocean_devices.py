@@ -103,8 +103,10 @@ def main():
         except queue.Empty:
             continue
         except KeyboardInterrupt:
+            print(ts() + " - Manually closing the application, exit")
             break
-        except Exception:
+        except Exception as exc:
+            print(str(exc))
             traceback.print_exc(file=sys.stdout)
             break
 
