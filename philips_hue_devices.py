@@ -10,6 +10,8 @@ import gevent
 import requests
 import threading
 import datetime
+import logging
+from logging.config import fileConfig
 from os import path
 import paho.mqtt.client as mqtt
 from influxdb import InfluxDBClient
@@ -36,6 +38,9 @@ lights       = None
 influxClient = None
 client       = None
 
+fileConfig('weather_log_config.yaml')
+logger = logging.getLogger(__name__)
+
 # return timestamp as string
 def ts():
     return str(datetime.datetime.now())
@@ -56,7 +61,7 @@ def connect_to_ddbb():
             influxClient.create_database(DDDBB_NAME)
             break
         except Exception as e:
-            print(ts() + str(e))
+            logger.exception(e)
 
 # publish to the influxDB database
 def publish_to_database(values):
@@ -76,17 +81,20 @@ def publish_to_database(values):
 def get_file(my_file):
     file_loc = os.path.join(os.path.dirname(__file__), my_file)
     if not path.exists(file_loc):
+        logger.error("no settings found")
         SystemExit(ts() + " - No settings given, exiting!")
     try:
         with open(file_loc, "r") as the_file:
             return json.load(the_file)
     except Exception as e:
+        logger.exception(e)
         SystemExit(ts() + str(e))
 
 # retrieve user from a saved session
 def get_user():
     file_loc = os.path.join(os.path.dirname(__file__), CRED_FILE_PATH)
     if not path.exists(file_loc):
+        logger.error("HUE user not enabled")
         SystemExit(ts() + " - HUE user not enabled")
     else:
         with open(file_loc, "r") as cred_file:
@@ -122,9 +130,10 @@ def override_default_values():
                         # if one or more attributes in "unwanted" are the same as in "default",
                         # it will always end in here, for those cases it would be better to avoid
                         # these values in the settings.json file
-                        print(ts() + " - unwanted values for {0} (at {1}) -> setting back".format(room, key))
+                        logger.error(ts() + " - unwanted values for {0} (at {1}) -> setting back".format(room, key))
                         lights[key].state(**args)
     except Exception as err:
+        logger.exception(err)
         SystemExit(ts() + " - light bulbs application crashed due to {0}".format(err))
 
 # check the current temperature and climate conditions in my city
@@ -209,4 +218,5 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
+        logger.exception()
         stop_application()

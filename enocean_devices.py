@@ -4,6 +4,8 @@
 import sys
 import time
 import datetime
+import logging
+from logging.config import fileConfig
 # from enocean.consolelogger import init_logging
 import enocean.utils
 from enocean.communicators.serialcommunicator import SerialCommunicator
@@ -24,6 +26,9 @@ ENOCEAN_DEVICES = {
 influxClient = None
 communicator = None
 
+fileConfig('enocean_log_config.yaml')
+logger = logging.getLogger(__name__)
+
 try:
     import queue
 except ImportError:
@@ -43,7 +48,7 @@ def connect_to_ddbb():
             influxClient.create_database(DDBB_NAME)
             break
         except Exception as e:
-            print(ts() + str(e))
+            logger.exception(e)
 
 # publish to the influxDB database
 def publish_to_database(values):
@@ -66,7 +71,8 @@ def main():
     communicator = SerialCommunicator(port='/dev/ttyUSB0')
     communicator.start()
 
-    print('The Base ID of your module is %s.' % enocean.utils.to_hex_string(communicator.base_id))
+    logger.info('The Base ID of your module is %s.' % 
+        enocean.utils.to_hex_string(communicator.base_id))
 
     # connect to the database
     connect_to_ddbb()
@@ -103,11 +109,10 @@ def main():
         except queue.Empty:
             continue
         except KeyboardInterrupt:
-            print(ts() + " - Manually closing the application, exit")
+            logger.exception("Manually closing the application, exit")
             break
         except Exception as exc:
-            print(str(exc))
-            traceback.print_exc(file=sys.stdout)
+            logger.exception(exc)
             break
 
         time.sleep(0.1)
