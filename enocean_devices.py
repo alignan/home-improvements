@@ -27,7 +27,9 @@ ENOCEAN_DEVICES = {
 influxClient = None
 communicator = None
 
-with open('enocean_log_config.yaml', 'rt') as f:
+LOGGING_PATH = 'enocean_log_config.yaml'
+
+with open(os.path.join(os.path.dirname(__file__), LOGGING_PATH)) as f:
     config = yaml.safe_load(f.read())
     logging.config.dictConfig(config)
 logger = logging.getLogger(__name__)
@@ -47,7 +49,8 @@ def connect_to_ddbb():
     while True:
         try:
             time.sleep(1)
-            influxClient = InfluxDBClient(DDBB_ADDRESS, DDBB_PORT, "root", "root")
+            influxClient = InfluxDBClient(DDBB_ADDRESS, DDBB_PORT, "root",
+                "root")
             influxClient.create_database(DDBB_NAME)
             break
         except Exception as e:
@@ -64,7 +67,8 @@ def publish_to_database(values):
             'measurement':key,
             'fields': {'value': val }
             })
-        influxClient.write_points(data, database=DDBB_NAME, time_precision='ms')
+        influxClient.write_points(data, database=DDBB_NAME,
+            time_precision='ms')
         data = []
 
 def main():

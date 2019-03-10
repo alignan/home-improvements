@@ -26,6 +26,7 @@ CRED_FILE_PATH      = ".philips_hue_secret.json"
 OVERRIDE_PERIOD     = 15.0
 OPENWEATHER_PERIOD  = 600.0
 OPENWEATHER_URL     = '/weather?id=2950159'
+LOGGING_PATH        = 'weather_log_config.yaml'
 
 DDDBB_NAME          = "local"
 DDBB_ADDRESS        = "localhost"
@@ -39,7 +40,18 @@ lights       = None
 influxClient = None
 client       = None
 
-with open('weather_log_config.yaml', 'rt') as f:
+    file_loc = os.path.join(os.path.dirname(__file__), LOGGING_PATH)
+    if not path.exists(file_loc):
+        logger.error("no settings found")
+        SystemExit(ts() + " - No settings given, exiting!")
+    try:
+        with open(file_loc, "r") as the_file:
+            return json.load(the_file)
+    except Exception as e:
+        logger.exception(e)
+        SystemExit(ts() + str(e))
+
+with open(os.path.join(os.path.dirname(__file__), )) as f:
     config = yaml.safe_load(f.read())
     logging.config.dictConfig(config)
 logger = logging.getLogger(__name__)
