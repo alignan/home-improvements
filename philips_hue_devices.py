@@ -12,6 +12,7 @@ import requests
 import threading
 import datetime
 import logging
+import logging.config
 from os import path
 import paho.mqtt.client as mqtt
 from influxdb import InfluxDBClient

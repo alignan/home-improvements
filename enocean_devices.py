@@ -6,6 +6,7 @@ import yaml
 import time
 import datetime
 import logging
+import logging.config
 # from enocean.consolelogger import init_logging
 import enocean.utils
 from enocean.communicators.serialcommunicator import SerialCommunicator
