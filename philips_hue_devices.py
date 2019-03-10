@@ -40,18 +40,7 @@ lights       = None
 influxClient = None
 client       = None
 
-    file_loc = os.path.join(os.path.dirname(__file__), LOGGING_PATH)
-    if not path.exists(file_loc):
-        logger.error("no settings found")
-        SystemExit(ts() + " - No settings given, exiting!")
-    try:
-        with open(file_loc, "r") as the_file:
-            return json.load(the_file)
-    except Exception as e:
-        logger.exception(e)
-        SystemExit(ts() + str(e))
-
-with open(os.path.join(os.path.dirname(__file__), )) as f:
+with open(os.path.join(os.path.dirname(__file__), LOGGING_PATH)) as f:
     config = yaml.safe_load(f.read())
     logging.config.dictConfig(config)
 logger = logging.getLogger(__name__)
