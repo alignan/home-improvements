@@ -100,12 +100,14 @@ def main():
                     # if packet.rorg_type == 0x05 and packet.rorg_func == 0x02:
                         packet.select_eep(0x02, 0x05)
                         packet.parse_eep()
-                        meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['TMP']['value'], 2)
+                        if 'TMP' in packet.parsed:
+                            meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['TMP']['value'], 2)
                     if ENOCEAN_DEVICES[packet.sender_hex] == 'living_room_CO2':
                     # if packet.rorg_type == 0x09 and packet.rorg_func == 0x09:
                         packet.select_eep(0x09, 0x09)
                         packet.parse_eep()
-                        meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['CO2']['value'], 2)
+                        if 'CO2' in packet.parsed:
+                            meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['CO2']['value'], 2)
             if meas:
                 publish_to_database(meas)
 
