@@ -2,10 +2,10 @@
 # -*- encoding: utf-8 -*-
 
 import sys
+import yaml
 import time
 import datetime
 import logging
-from logging.config import fileConfig
 # from enocean.consolelogger import init_logging
 import enocean.utils
 from enocean.communicators.serialcommunicator import SerialCommunicator
@@ -26,7 +26,9 @@ ENOCEAN_DEVICES = {
 influxClient = None
 communicator = None
 
-fileConfig('enocean_log_config.yaml')
+with open('enocean_log_config.yaml', 'rt') as f:
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
 logger = logging.getLogger(__name__)
 
 try:

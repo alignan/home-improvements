@@ -4,6 +4,7 @@
 import os
 import sys
 import json
+import yaml
 import time
 import signal
 import gevent
@@ -11,7 +12,6 @@ import requests
 import threading
 import datetime
 import logging
-from logging.config import fileConfig
 from os import path
 import paho.mqtt.client as mqtt
 from influxdb import InfluxDBClient
@@ -38,7 +38,9 @@ lights       = None
 influxClient = None
 client       = None
 
-fileConfig('weather_log_config.yaml')
+with open('weather_log_config.yaml', 'rt') as f:
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
 logger = logging.getLogger(__name__)
 
 # return timestamp as string
