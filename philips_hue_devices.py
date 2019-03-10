@@ -222,5 +222,5 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        logger.exception()
+        logger.exception("keyboard interrupt")
         stop_application()
