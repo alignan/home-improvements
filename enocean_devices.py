@@ -22,7 +22,8 @@ DDBB_PORT      = 8086
 
 ENOCEAN_DEVICES = {
     '01:80:F5:BC': 'main_bedroom_temperature',
-    '01:9C:44:11': 'living_room_CO2'
+    '01:9C:44:11': 'living_room_CO2',
+    '05:10:19:64': 'balcony_temperature'
 }
 
 influxClient = None
@@ -107,6 +108,14 @@ def main():
                         packet.parse_eep()
                         if 'TMP' in packet.parsed:
                             meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['TMP']['value'], 2)
+
+                    if ENOCEAN_DEVICES[packet.sender_hex] == 'balcony_temperature':
+                    # if packet.rorg_type == 0x05 and packet.rorg_func == 0x02:
+                        packet.select_eep(0x02, 0x13)
+                        packet.parse_eep()
+                        if 'TMP' in packet.parsed:
+                            meas[ENOCEAN_DEVICES[packet.sender_hex]] = round(packet.parsed['TMP']['value'], 2)
+
                     if ENOCEAN_DEVICES[packet.sender_hex] == 'living_room_CO2':
                     # if packet.rorg_type == 0x09 and packet.rorg_func == 0x09:
                         packet.select_eep(0x09, 0x09)
