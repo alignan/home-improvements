@@ -91,10 +91,10 @@ def publish_to_database(values):
 # parses and publishes sensor data to the database
 def enocean_parse_and_publish(data, dev):
     meas = {}
-    packet.select_eep(dev['func'], dev['type'])
-    packet.parse_eep()
-    if dev['meas'] in packet.parsed:
-        meas[dev['name']] = round(packet.parsed[dev['meas']]['value'], 2)
+    data.select_eep(dev['func'], dev['type'])
+    data.parse_eep()
+    if dev['meas'] in data.parsed:
+        meas[dev['name']] = round(data.parsed[dev['meas']]['value'], 2)
         logger.info("PUB --> {}: {}".format(dev['name'], meas[dev['name']]))
         return meas
 
