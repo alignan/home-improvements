@@ -20,6 +20,7 @@ DDBB_NAME      = "local"
 DDBB_ADDRESS   = "localhost"
 DDBB_PORT      = 8086
 
+# TODO: expand the 'meas' type as list as sensors may have > 1 attribute
 ENOCEAN_DEVICES = {
     '01:80:F5:BC': {
         'name': 'main_bedroom_temperature',
@@ -38,6 +39,12 @@ ENOCEAN_DEVICES = {
         'func': 0x02,
         'type': 0x13,
         'meas': 'TMP'
+    },
+    '01:93:BA:EF': {
+        'name': 'bathroom_presence',
+        'func': 0x07,
+        'type': 0x01,
+        'meas': 'PIR'
     }
 }
 
