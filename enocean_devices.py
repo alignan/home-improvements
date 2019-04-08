@@ -101,7 +101,14 @@ def enocean_parse_and_publish(data, dev):
     data.select_eep(dev['func'], dev['type'])
     data.parse_eep()
     if dev['meas'] in data.parsed:
-        meas[dev['name']] = round(data.parsed[dev['meas']]['value'], 2)
+        if isinstance(data.parsed[dev['meas']]['value'], (int, long)):
+            meas[dev['name']] = round(data.parsed[dev['meas']]['value'], 2)
+        else:
+            meas[dev['name']] = data.parsed[dev['meas']]['value']
+            if 'on' in meas[dev['name']]:
+                meas[dev['name']] = 'occupied'
+            if 'off' in meas[dev['name']]:
+                meas[dev['name']] = 'empty'
         logger.info("PUB --> {}: {}".format(dev['name'], meas[dev['name']]))
         return meas
 
