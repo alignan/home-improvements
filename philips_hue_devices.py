@@ -73,7 +73,7 @@ def publish_to_database(values):
 
     data = []
     # takes an array of dictionaries and builds a list
-    for key, val in values.iteritems():
+    for key, val in values.items():
         data.append({
             'measurement': key,
             'fields': {'value': val }
@@ -116,9 +116,9 @@ def override_default_values():
     t.start()
 
     try:
-        for key, value in lights().iteritems():
+        for key, value in lights().items():
             # print key, value
-            for room, config in settings.iteritems():
+            for room, config in settings.items():
                 if room in value['name'] and \
                     value['state']['reachable'] and value['state']['on']:
                     # check for the default values
@@ -127,7 +127,7 @@ def override_default_values():
                     # namely "hue", "sat", "xy" (colormode for type "Color temperature light" only
                     # allows "ct")
                     args = {}
-                    for x, y in config['unwanted'].iteritems():
+                    for x, y in config['unwanted'].items():
                         if x in value['state'] and value['state'][x] == y:
                             args[x] = config['default'][x]
                     if args:
