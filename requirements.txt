@@ -4,3 +4,4 @@ paho-mqtt==1.4.0
 gevent==1.4.0
 qhue==1.0.12
 influxdb==5.2.1
+mosquitto==1.5.7
