@@ -499,7 +499,7 @@
           "tags": []
         }
       ],
-      "thresholds": "800,1500",
+      "thresholds": "1400,1900",
       "timeFrom": null,
       "timeShift": null,
       "title": "Main bedroom CO",
@@ -1116,5 +1116,5 @@
   "timezone": "browser",
   "title": "Home",
   "uid": "0Duk-Qggz",
-  "version": 13
+  "version": 15
 }
