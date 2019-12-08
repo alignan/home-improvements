@@ -127,16 +127,16 @@ def enocean_parse_and_publish(data, dev):
         for name, val in data.parsed.items():
             if sensor['meas'] == name:
                 if isinstance(val['value'], (int, float)):
-                    meas[sensor['meas']] = round(val['value'], 2)
+                    meas[sensor['name']] = round(val['value'], 2)
                 else:
-                    meas[sensor['meas']] = val['value']
+                    meas[sensor['name']] = val['value']
 
                     # only for the occupancy sensor
                     if dev['func'] == 0x07 and dev['type'] == 0x01:
-                        if meas[sensor['meas']] == 'on':
-                            meas[sensor['meas']] = 1
+                        if meas[sensor['name']] == 'on':
+                            meas[sensor['name']] = 1
                         else:
-                            meas[sensor['meas']] = 0
+                            meas[sensor['name']] = 0
 
                 logger.info("PUB --> {}: {}".format(sensor['name'],
                     meas[sensor['meas']]))
