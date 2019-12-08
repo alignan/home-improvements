@@ -23,47 +23,51 @@ DDBB_PORT      = 8086
 # TODO: expand the 'meas' type as list as sensors may have > 1 attribute
 ENOCEAN_DEVICES = {
     '01:80:F5:BC': {
-        'name': 'main_bedroom_temperature',
         'func': 0x02,
         'type': 0x05,
-        'meas': 'TMP'
+        'sens': [{
+                'meas': 'TMP',
+                'name': 'main_bedroom_temperature'
+            }]
     },
     '01:9C:44:11': {
-        'name': 'main_bedroom_CO2',
         'func': 0x09,
         'type': 0x09,
-        'meas': 'CO2'
+        'sens': [{
+                'meas': 'CO2',
+                'name': 'main_bedroom_CO2'
+            }]
     },
     '05:87:1B:CA': {
-        'name': 'balcony_temperature',
         'func': 0x04,
         'type': 0x02,
-        'meas': 'TMP'
-    },
-    '05:87:1B:CA': {
-        'name': 'balcony_humidity',
-        'func': 0x04,
-        'type': 0x02,
-        'meas': 'HUM'
+        'sens': [{
+                'meas': 'TMP',
+                'name': 'balcony_temperature'
+            },{
+                'meas': 'HUM',
+                'name': 'balcony_humidity'
+            }]
     },
     '01:93:BA:EF': {
-        'name': 'bathroom_occupancy',
         'func': 0x07,
         'type': 0x01,
-        'meas': 'PIR'
+        'sens': [{
+                'meas': 'PIR',
+                'name': 'bathroom_occupancy'
+            }]
     },
     '05:8E:53:CB': {
-        'name': 'bathroom_temperature',
         'func': 0x04,
         'type': 0x01,
-        'meas': 'TMP'
-    },
-    '05:8E:53:CB': {
-        'name': 'bathroom_humidity',
-        'func': 0x04,
-        'type': 0x01,
-        'meas': 'HUM'
-    },
+        'sens': [{
+                'meas': 'TMP',
+                'name': 'bathroom_temperature'
+            },{
+                'meas': 'HUM',
+                'name': 'bathroom_humidity'
+            }]
+    }
 }
 
 influxClient = None
@@ -118,21 +122,25 @@ def enocean_parse_and_publish(data, dev):
     meas = {}
     data.select_eep(dev['func'], dev['type'])
     data.parse_eep()
-    if dev['meas'] in data.parsed:
-        if isinstance(data.parsed[dev['meas']]['value'], (int, float)):
-            meas[dev['name']] = round(data.parsed[dev['meas']]['value'], 2)
-        else:
-            meas[dev['name']] = data.parsed[dev['meas']]['value']
 
-            # only for the occupancy sensor
-            if dev['func'] == 0x07 and dev['type'] == 0x01:
-                if meas[dev['name']] == 'on':
-                    meas[dev['name']] = 1
+    for sensor in dev['sens']:
+        for name, val in data.parsed.items():
+            if sensor['meas'] == name:
+                if isinstance(val['value'], (int, float)):
+                    meas[sensor['meas']] = round(val['value'], 2)
                 else:
-                    meas[dev['name']] = 0
+                    meas[sensor['meas']] = val['value']
 
-        logger.info("PUB --> {}: {}".format(dev['name'], meas[dev['name']]))
-        return meas
+                    # only for the occupancy sensor
+                    if dev['func'] == 0x07 and dev['type'] == 0x01:
+                        if meas[sensor['meas']] == 'on':
+                            meas[sensor['meas']] = 1
+                        else:
+                            meas[sensor['meas']] = 0
+
+                logger.info("PUB --> {}: {}".format(sensor['name'],
+                    meas[sensor['meas']]))
+                publish_to_database(meas)
 
 def main():
     global influxClient, communicator
@@ -160,8 +168,6 @@ def main():
                 if packet.rorg == RORG.BS4 and packet.sender_hex in ENOCEAN_DEVICES:
                     meas = enocean_parse_and_publish(packet,
                         ENOCEAN_DEVICES[packet.sender_hex])
-                    if meas is not None:
-                        publish_to_database(meas)
 
         except queue.Empty:
             continue
