@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 3,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -353,7 +353,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "berlin_temperature",
+          "measurement": "balcony_temperature",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -378,7 +378,7 @@
       "thresholds": "20,25",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Temperature in Berlin",
+      "title": "Balcony temperature",
       "type": "singlestat",
       "valueFontSize": "200%",
       "valueMaps": [
@@ -477,7 +477,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "living_room_CO2",
+          "measurement": "main_bedroom_CO2",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -522,7 +522,7 @@
       "colorValue": false,
       "colors": [
         "#FFEE52",
-        "#96D98D",
+        "#8AB8FF",
         "#1F60C4"
       ],
       "datasource": "InfluxDB",
@@ -601,7 +601,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "berlin_humidity",
+          "measurement": "balcony_humidity",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -623,10 +623,10 @@
           "tags": []
         }
       ],
-      "thresholds": "40,70",
+      "thresholds": "40,80",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Humidity in Berlin",
+      "title": "Balcony humidity",
       "type": "singlestat",
       "valueFontSize": "200%",
       "valueMaps": [
@@ -1116,5 +1116,5 @@
   "timezone": "browser",
   "title": "Home",
   "uid": "0Duk-Qggz",
-  "version": 15
+  "version": 3
 }
