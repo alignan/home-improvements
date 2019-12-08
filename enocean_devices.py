@@ -29,23 +29,41 @@ ENOCEAN_DEVICES = {
         'meas': 'TMP'
     },
     '01:9C:44:11': {
-        'name': 'living_room_CO2',
+        'name': 'main_bedroom_CO2',
         'func': 0x09,
         'type': 0x09,
         'meas': 'CO2'
     },
-    '05:10:19:64': {
+    '05:87:1B:CA': {
         'name': 'balcony_temperature',
-        'func': 0x02,
-        'type': 0x13,
+        'func': 0x04,
+        'type': 0x02,
         'meas': 'TMP'
+    },
+    '05:87:1B:CA': {
+        'name': 'balcony_humidity',
+        'func': 0x04,
+        'type': 0x02,
+        'meas': 'HUM'
     },
     '01:93:BA:EF': {
         'name': 'bathroom_occupancy',
         'func': 0x07,
         'type': 0x01,
         'meas': 'PIR'
-    }
+    },
+    '05:8E:53:CB': {
+        'name': 'bathroom_temperature',
+        'func': 0x04,
+        'type': 0x01,
+        'meas': 'TMP'
+    },
+    '05:8E:53:CB': {
+        'name': 'bathroom_humidity',
+        'func': 0x04,
+        'type': 0x01,
+        'meas': 'HUM'
+    },
 }
 
 influxClient = None
