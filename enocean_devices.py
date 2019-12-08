@@ -139,7 +139,7 @@ def enocean_parse_and_publish(data, dev):
                             meas[sensor['name']] = 0
 
                 logger.info("PUB --> {}: {}".format(sensor['name'],
-                    meas[sensor['meas']]))
+                    meas[sensor['name']]))
                 publish_to_database(meas)
 
 def main():
