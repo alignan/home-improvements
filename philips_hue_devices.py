@@ -210,7 +210,7 @@ def main():
     connect_to_ddbb()
 
     # start my threads
-    override_default_values()
+    # override_default_values()
     lights_weather_indication()
     # lights_schedule()
     # lights_rule()
