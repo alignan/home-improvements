@@ -22,7 +22,7 @@ from qhue import Bridge, QhueException, create_new_username
 SETTINGS_FILE_PATH  = "settings.json"
 CONFIG_FILE_PATH    = "config.json"
 OPENWEATHER_PATH    = "openweather.json"
-CRED_FILE_PATH      = ".philips_hue_secret.json"
+CRED_FILE_PATH      = ".home_secrets.json"
 OVERRIDE_PERIOD     = 15.0
 OPENWEATHER_PERIOD  = 600.0
 OPENWEATHER_URL     = '/weather?id=2950159'
