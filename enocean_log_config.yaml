@@ -8,17 +8,17 @@ formatters:
 handlers:
   console:
     class: logging.StreamHandler
-    level: INFO
+    level: INFO 
     formatter: simple
     stream: ext://sys.stdout
   watched_file_handler:
     class: logging.handlers.WatchedFileHandler
-    level: DEBUG
+    level: INFO
     formatter: full
     filename: enocean.log
     encoding: utf8
 root:
-  level: DEBUG
+  level: INFO
   handlers:
   - console
   - watched_file_handler
