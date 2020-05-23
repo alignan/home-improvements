@@ -41,7 +41,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 24,
+        "w": 18,
         "x": 0,
         "y": 0
       },
@@ -143,6 +143,88 @@
       "valueName": "current"
     },
     {
+      "bgColor": null,
+      "clockType": "24 hour",
+      "countdownSettings": {
+        "customFormat": null,
+        "endCountdownTime": "2019-11-03T20:18:00.000Z",
+        "endText": "00:00:00"
+      },
+      "datasource": null,
+      "dateSettings": {
+        "dateFormat": "YYYY-MM-DD",
+        "fontSize": "20px",
+        "fontWeight": "normal",
+        "showDate": false
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "id": 11,
+      "mode": "time",
+      "options": {},
+      "refreshSettings": {
+        "syncWithDashboard": false
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeSettings": {
+        "customFormat": "HH:mm:ss",
+        "fontSize": "80px",
+        "fontWeight": "bold"
+      },
+      "timeShift": null,
+      "timezone": "America/Bogota",
+      "timezoneSettings": {
+        "fontSize": "15px",
+        "fontWeight": "normal",
+        "showTimezone": true,
+        "zoneFormat": "name"
+      },
+      "title": "",
+      "transparent": true,
+      "type": "grafana-clock-panel"
+    },
+    {
       "cacheTimeout": null,
       "colorBackground": true,
       "colorPostfix": false,
@@ -165,7 +247,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 12,
+        "w": 6,
         "x": 0,
         "y": 4
       },
@@ -273,6 +355,130 @@
       "colorPrefix": false,
       "colorValue": false,
       "colors": [
+        "#FFEE52",
+        "#8AB8FF",
+        "#1F60C4"
+      ],
+      "datasource": "InfluxDB",
+      "decimals": 2,
+      "format": "humidity",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 4
+      },
+      "id": 13,
+      "interval": null,
+      "links": [
+        {
+          "title": "",
+          "url": ""
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.4.3",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(36, 75, 94, 0.18)",
+        "full": true,
+        "lineColor": "rgb(20, 20, 20)",
+        "show": true,
+        "ymax": 100,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "main_bedroom_humidity",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "distinct"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "40,80",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Main Bedroom humidity",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
         "#1F60C4",
         "#56A64B",
         "#d44a3a"
@@ -289,7 +495,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 12,
+        "w": 6,
         "x": 12,
         "y": 4
       },
@@ -379,6 +585,130 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "Balcony temperature",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#FFEE52",
+        "#8AB8FF",
+        "#1F60C4"
+      ],
+      "datasource": "InfluxDB",
+      "decimals": 2,
+      "format": "humidity",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 4
+      },
+      "id": 4,
+      "interval": null,
+      "links": [
+        {
+          "title": "",
+          "url": ""
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.4.3",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(36, 75, 94, 0.18)",
+        "full": true,
+        "lineColor": "rgb(20, 20, 20)",
+        "show": true,
+        "ymax": 100,
+        "ymin": 0
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "balcony_humidity",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "distinct"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "40,80",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Balcony humidity",
       "type": "singlestat",
       "valueFontSize": "200%",
       "valueMaps": [
@@ -521,6 +851,254 @@
       "colorPrefix": false,
       "colorValue": false,
       "colors": [
+        "#1F60C4",
+        "#56A64B",
+        "#d44a3a"
+      ],
+      "datasource": "InfluxDB",
+      "decimals": 2,
+      "format": "celsius",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 12,
+      "interval": null,
+      "links": [
+        {
+          "title": "",
+          "url": ""
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.4.3",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(36, 75, 94, 0.18)",
+        "full": true,
+        "lineColor": "rgb(20, 20, 20)",
+        "show": true,
+        "ymax": 50,
+        "ymin": -20
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "living_room_temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "distinct"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "20,25",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Living room temperature",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#1F60C4",
+        "#56A64B",
+        "#d44a3a"
+      ],
+      "datasource": "InfluxDB",
+      "decimals": 2,
+      "format": "celsius",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 12
+      },
+      "id": 14,
+      "interval": null,
+      "links": [
+        {
+          "title": "",
+          "url": ""
+        }
+      ],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.4.3",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(36, 75, 94, 0.18)",
+        "full": true,
+        "lineColor": "rgb(20, 20, 20)",
+        "show": true,
+        "ymax": 50,
+        "ymin": -20
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "bathroom_temperature",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "distinct"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "20,25",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Bathroom temperature",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
         "#FFEE52",
         "#8AB8FF",
         "#1F60C4"
@@ -537,11 +1115,11 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 12,
-        "x": 12,
-        "y": 8
+        "w": 6,
+        "x": 6,
+        "y": 12
       },
-      "id": 4,
+      "id": 15,
       "interval": null,
       "links": [
         {
@@ -601,7 +1179,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "balcony_humidity",
+          "measurement": "bathroom_humidity",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -626,138 +1204,9 @@
       "thresholds": "40,80",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Balcony humidity",
+      "title": "Bathroom humidity",
       "type": "singlestat",
       "valueFontSize": "200%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorPostfix": false,
-      "colorPrefix": false,
-      "colorValue": false,
-      "colors": [
-        "#56A64B",
-        "#56A64B",
-        "#d44a3a"
-      ],
-      "datasource": "InfluxDB",
-      "decimals": 2,
-      "format": "ppm",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 12,
-        "x": 0,
-        "y": 12
-      },
-      "id": 7,
-      "interval": null,
-      "links": [
-        {
-          "title": "",
-          "url": ""
-        }
-      ],
-      "mappingType": 2,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "options": {},
-      "pluginVersion": "6.4.3",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "0",
-          "text": "Empty",
-          "to": "0"
-        },
-        {
-          "from": "1",
-          "text": "Occupied",
-          "to": "1"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(36, 75, 94, 0.18)",
-        "full": true,
-        "lineColor": "rgb(20, 20, 20)",
-        "show": true,
-        "ymax": 2000,
-        "ymin": 0
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "bathroom_occupancy",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": "0,1",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Bathroom",
-      "type": "singlestat",
-      "valueFontSize": "170%",
       "valueMaps": [
         {
           "op": "=",
@@ -892,19 +1341,25 @@
       "valueName": "current"
     },
     {
-      "bgColor": null,
-      "clockType": "24 hour",
-      "countdownSettings": {
-        "customFormat": null,
-        "endCountdownTime": "2019-11-03T20:18:00.000Z",
-        "endText": "00:00:00"
-      },
-      "datasource": null,
-      "dateSettings": {
-        "dateFormat": "YYYY-MM-DD",
-        "fontSize": "20px",
-        "fontWeight": "normal",
-        "showDate": false
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#56A64B",
+        "#56A64B",
+        "#d44a3a"
+      ],
+      "datasource": "InfluxDB",
+      "decimals": 2,
+      "format": "ppm",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
       },
       "gridPos": {
         "h": 4,
@@ -912,12 +1367,55 @@
         "x": 0,
         "y": 16
       },
-      "id": 11,
-      "mode": "time",
+      "id": 7,
+      "interval": null,
+      "links": [
+        {
+          "title": "",
+          "url": ""
+        }
+      ],
+      "mappingType": 2,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
       "options": {},
-      "refreshSettings": {
-        "syncWithDashboard": false
+      "pluginVersion": "6.4.3",
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "0",
+          "text": "Empty",
+          "to": "0"
+        },
+        {
+          "from": "1",
+          "text": "Occupied",
+          "to": "1"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(36, 75, 94, 0.18)",
+        "full": true,
+        "lineColor": "rgb(20, 20, 20)",
+        "show": true,
+        "ymax": 2000,
+        "ymin": 0
       },
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [
@@ -934,6 +1432,7 @@
               "type": "fill"
             }
           ],
+          "measurement": "bathroom_occupancy",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -948,30 +1447,27 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "distinct"
               }
             ]
           ],
           "tags": []
         }
       ],
+      "thresholds": "0,1",
       "timeFrom": null,
-      "timeSettings": {
-        "customFormat": "HH:mm:ss",
-        "fontSize": "80px",
-        "fontWeight": "bold"
-      },
       "timeShift": null,
-      "timezone": "America/Bogota",
-      "timezoneSettings": {
-        "fontSize": "15px",
-        "fontWeight": "normal",
-        "showTimezone": true,
-        "zoneFormat": "name"
-      },
-      "title": "",
-      "transparent": true,
-      "type": "grafana-clock-panel"
+      "title": "Bathroom",
+      "type": "singlestat",
+      "valueFontSize": "170%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -1116,5 +1612,5 @@
   "timezone": "browser",
   "title": "Home",
   "uid": "0Duk-Qggz",
-  "version": 3
+  "version": 6
 }
