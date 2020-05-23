@@ -41,7 +41,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 18,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -141,88 +141,6 @@
         }
       ],
       "valueName": "current"
-    },
-    {
-      "bgColor": null,
-      "clockType": "24 hour",
-      "countdownSettings": {
-        "customFormat": null,
-        "endCountdownTime": "2019-11-03T20:18:00.000Z",
-        "endText": "00:00:00"
-      },
-      "datasource": null,
-      "dateSettings": {
-        "dateFormat": "YYYY-MM-DD",
-        "fontSize": "20px",
-        "fontWeight": "normal",
-        "showDate": false
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 18,
-        "y": 0
-      },
-      "id": 11,
-      "mode": "time",
-      "options": {},
-      "refreshSettings": {
-        "syncWithDashboard": false
-      },
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "timeFrom": null,
-      "timeSettings": {
-        "customFormat": "HH:mm:ss",
-        "fontSize": "80px",
-        "fontWeight": "bold"
-      },
-      "timeShift": null,
-      "timezone": "America/Bogota",
-      "timezoneSettings": {
-        "fontSize": "15px",
-        "fontWeight": "normal",
-        "showTimezone": true,
-        "zoneFormat": "name"
-      },
-      "title": "",
-      "transparent": true,
-      "type": "grafana-clock-panel"
     },
     {
       "cacheTimeout": null,
@@ -338,7 +256,7 @@
       "timeShift": null,
       "title": "Main bedroom temperature",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -355,7 +273,7 @@
       "colorPrefix": false,
       "colorValue": false,
       "colors": [
-        "#FFEE52",
+        "#E0B400",
         "#8AB8FF",
         "#1F60C4"
       ],
@@ -462,7 +380,7 @@
       "timeShift": null,
       "title": "Main Bedroom humidity",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -586,7 +504,7 @@
       "timeShift": null,
       "title": "Balcony temperature",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -603,7 +521,7 @@
       "colorPrefix": false,
       "colorValue": false,
       "colors": [
-        "#FFEE52",
+        "#E0B400",
         "#8AB8FF",
         "#1F60C4"
       ],
@@ -710,7 +628,7 @@
       "timeShift": null,
       "title": "Balcony humidity",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -834,7 +752,7 @@
       "timeShift": null,
       "title": "Main bedroom CO",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -958,7 +876,7 @@
       "timeShift": null,
       "title": "Living room temperature",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -1082,7 +1000,7 @@
       "timeShift": null,
       "title": "Bathroom temperature",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -1099,7 +1017,7 @@
       "colorPrefix": false,
       "colorValue": false,
       "colors": [
-        "#FFEE52",
+        "#E0B400",
         "#8AB8FF",
         "#1F60C4"
       ],
@@ -1206,7 +1124,7 @@
       "timeShift": null,
       "title": "Bathroom humidity",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -1330,7 +1248,7 @@
       "timeShift": null,
       "title": "Pressure in Berlin",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -1363,7 +1281,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 12,
+        "w": 6,
         "x": 0,
         "y": 16
       },
@@ -1468,6 +1386,88 @@
         }
       ],
       "valueName": "current"
+    },
+    {
+      "bgColor": null,
+      "clockType": "24 hour",
+      "countdownSettings": {
+        "customFormat": null,
+        "endCountdownTime": "2019-11-03T20:18:00.000Z",
+        "endText": "00:00:00"
+      },
+      "datasource": null,
+      "dateSettings": {
+        "dateFormat": "YYYY-MM-DD",
+        "fontSize": "20px",
+        "fontWeight": "normal",
+        "showDate": false
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 16
+      },
+      "id": 11,
+      "mode": "time",
+      "options": {},
+      "refreshSettings": {
+        "syncWithDashboard": false
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeSettings": {
+        "customFormat": "HH:mm:ss",
+        "fontSize": "80px",
+        "fontWeight": "bold"
+      },
+      "timeShift": null,
+      "timezone": "America/Bogota",
+      "timezoneSettings": {
+        "fontSize": "15px",
+        "fontWeight": "normal",
+        "showTimezone": true,
+        "zoneFormat": "name"
+      },
+      "title": "",
+      "transparent": true,
+      "type": "grafana-clock-panel"
     },
     {
       "cacheTimeout": null,
@@ -1583,7 +1583,7 @@
       "timeShift": null,
       "title": "Wind speed in Berlin",
       "type": "singlestat",
-      "valueFontSize": "200%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -1594,6 +1594,7 @@
       "valueName": "current"
     }
   ],
+  "refresh": "",
   "schemaVersion": 20,
   "style": "dark",
   "tags": [],
@@ -1612,5 +1613,5 @@
   "timezone": "browser",
   "title": "Home",
   "uid": "0Duk-Qggz",
-  "version": 6
+  "version": 8
 }
