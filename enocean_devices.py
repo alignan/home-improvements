@@ -27,7 +27,7 @@ ENOCEAN_DEVICES = {
         'type': 0x05,
         'sens': [{
                 'meas': 'TMP',
-                'name': 'main_bedroom_temperature'
+                'name': 'living_room_temperature'
             }]
     },
     '01:9C:44:11': {
