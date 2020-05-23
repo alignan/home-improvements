@@ -67,6 +67,17 @@ ENOCEAN_DEVICES = {
                 'meas': 'HUM',
                 'name': 'bathroom_humidity'
             }]
+    },
+    '05:8E:53:6C': {
+        'func': 0x04,
+        'type': 0x01,
+        'sens': [{
+                'meas': 'TMP',
+                'name': 'main_bedroom_temperature'
+            },{
+                'meas': 'HUM',
+                'name': 'main_bedroom_humidity'
+            }]
     }
 }
 
