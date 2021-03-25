@@ -1,4 +1,4 @@
-PyYAML==5.1
+PyYAML==5.4
 requests==2.21.0
 paho-mqtt==1.4.0
 gevent==1.4.0
